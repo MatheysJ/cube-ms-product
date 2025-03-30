@@ -8,6 +8,8 @@ import com.cube.product.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,6 +23,7 @@ public class ProductService {
 
     private ProductMapper productMapper;
 
+    @GetMapping()
     public List<ProductResponse> getAllProducts () {
         log.info("Started getting all products");
 
@@ -30,13 +33,14 @@ public class ProductService {
         return productDocuments.stream().map(productMapper::documentToResponse).collect(Collectors.toList());
     }
 
+    @PostMapping()
     public ProductResponse createProduct (ProductRequest productRequest) {
         log.info("Started creating a product");
 
-        ProductDocument productDocument = productRepository.save(productRequest);
+        ProductDocument newProductDocument = productRepository.save(productMapper.requestToDocument(productRequest));
 
         log.info("Started returning new product");
-        return productMapper.documentToResponse(productDocument);
+        return productMapper.documentToResponse(newProductDocument);
     }
 
 }

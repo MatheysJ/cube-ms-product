@@ -18,7 +18,7 @@ import java.util.List;
 @RequestMapping("/v1/product")
 public class ProductController {
 
-    private ProductService productService;
+    private final ProductService productService;
 
     @GetMapping()
     public ResponseEntity<List<ProductResponse>> getAllProducts() {
