@@ -1,22 +1,15 @@
-package com.cube.product.documents;
+package com.cube.product.dtos.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.MongoId;
 
 @Data
 @Builder
-@Document
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductDocument {
-
-    @MongoId
-    private String id;
+public class EditProductRequest {
 
     private String name;
 
@@ -24,7 +17,6 @@ public class ProductDocument {
 
     private String description;
 
-    @Indexed
     private String categoryId;
 
     private Double price;

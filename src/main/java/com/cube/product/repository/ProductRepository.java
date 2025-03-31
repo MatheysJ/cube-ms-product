@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface ProductRepository extends MongoRepository<ProductDocument, String> {
 
-    public List<ProductDocument> findAll();
+    List<ProductDocument> findAll();
 
-    public ProductDocument save(ProductRequest productRequest);
+    ProductDocument save(ProductRequest productRequest);
 
 }

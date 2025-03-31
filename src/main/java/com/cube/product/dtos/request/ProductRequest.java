@@ -24,4 +24,5 @@ public class ProductRequest {
     @NotBlank
     private String categoryId;
 
+    private Double price;
 }

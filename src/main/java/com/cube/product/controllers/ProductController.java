@@ -1,5 +1,6 @@
 package com.cube.product.controllers;
 
+import com.cube.product.dtos.request.EditProductRequest;
 import com.cube.product.dtos.request.ProductRequest;
 import com.cube.product.dtos.response.ProductResponse;
 import com.cube.product.services.ProductService;
@@ -36,6 +37,24 @@ public class ProductController {
 
         log.info("Successfully created a product");
         return ResponseEntity.status(HttpStatus.CREATED).body(product);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<ProductResponse> editProduct(@PathVariable("id") String id, @RequestBody @Valid EditProductRequest productRequest) {
+        log.info("Editing a product");
+        ProductResponse product = productService.editProduct(id, productRequest);
+
+        log.info("Successfully edited a product");
+        return ResponseEntity.status(HttpStatus.CREATED).body(product);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ProductResponse> deleteProduct(@PathVariable("id") String id) {
+        log.info("Deleting a product");
+        productService.deleteProduct(id);
+
+        log.info("Successfully deleted a product");
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
     }
 
 }
