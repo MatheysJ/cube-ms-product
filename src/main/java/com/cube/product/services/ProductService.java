@@ -44,13 +44,12 @@ public class ProductService {
     }
 
     public ProductResponse editProduct (String id, EditProductRequest productRequest) {
-        log.info("Started editing a product");
-
+        log.info("Started editing a product {}", id);
         ProductDocument product = this.getProductById(id);
 
         ProductDocument editedProduct = productMapper.updateDocumentFromRequest(productRequest, product);
 
-        log.info("Started returning the edited product");
+        log.info("Started returning the edited product {}", id);
         return productMapper.documentToResponse(productRepository.save(editedProduct));
     }
 
