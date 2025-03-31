@@ -1,0 +1,61 @@
+package com.cube.product.exceptions;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+@Slf4j
+@RestControllerAdvice
+public class ExceptionController {
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<ExceptionResponse> handleBusinessException(BadRequestException ex) {
+        log.warn("BadRequestException thrown with message: [{}]", ex.getMessage());
+
+        ExceptionResponse response = buildExceptionResponse(ex);
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<ExceptionResponse> handleNotFoundException(NotFoundException ex) {
+        log.warn("NotFoundException thrown with message: [{}]", ex.getMessage());
+
+        ExceptionResponse response = buildExceptionResponse(ex);
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+    }
+
+    @ExceptionHandler(InternalException.class)
+    public ResponseEntity<ExceptionResponse> handleInternalException(InternalException ex) {
+        log.error("InternalException thrown with message: [{}]", ex.getMessage());
+
+        ExceptionResponse response = buildExceptionResponse(ex);
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+    }
+
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<ExceptionResponse> handleUnauthorizedException(UnauthorizedException ex) {
+        log.warn("UnauthorizedException thrown with message: [{}]", ex.getMessage());
+
+        ExceptionResponse response = buildExceptionResponse(ex);
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+    }
+
+    @ExceptionHandler(ConflitException.class)
+    public ResponseEntity<ExceptionResponse> handleBusinessException(ConflitException ex) {
+        log.warn("ConflitException thrown with message: [{}]", ex.getMessage());
+
+        ExceptionResponse response = buildExceptionResponse(ex);
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
+    }
+
+    private ExceptionResponse buildExceptionResponse(BusinessException ex) {
+        return ExceptionResponse.builder().code(ex.getCode()).message(ex.getMessage()).build();
+    }
+}

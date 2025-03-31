@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: product
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: product_db
+      user: "${MONGO_USER:root}"
+      password: "${MONGO_PASSWORD:pass}"
