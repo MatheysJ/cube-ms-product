@@ -1,9 +1,11 @@
 package com.cube.product.services;
 
 import com.cube.product.documents.ProductDocument;
+import com.cube.product.dtos.internal.ExceptionCode;
 import com.cube.product.dtos.request.EditProductRequest;
 import com.cube.product.dtos.request.ProductRequest;
 import com.cube.product.dtos.response.ProductResponse;
+import com.cube.product.exceptions.BadRequestException;
 import com.cube.product.mappers.ProductMapper;
 import com.cube.product.repository.ProductRepository;
 import lombok.AllArgsConstructor;
@@ -44,8 +46,7 @@ public class ProductService {
     public ProductResponse editProduct (String id, EditProductRequest productRequest) {
         log.info("Started editing a product");
 
-        Optional<ProductDocument> savedProduct = productRepository.findById(id);
-        ProductDocument product = savedProduct.orElseThrow(RuntimeException::new);
+        ProductDocument product = this.getProductById(id);
 
         ProductDocument editedProduct = productMapper.updateDocumentFromRequest(productRequest, product);
 
@@ -55,11 +56,20 @@ public class ProductService {
 
     public void deleteProduct (String id) {
         log.info("Started deleting the product {}", id);
-        Optional<ProductDocument> savedProduct = productRepository.findById(id);
-        savedProduct.orElseThrow(RuntimeException::new);
+        this.getProductById(id);
 
         productRepository.deleteById(id);
         log.info("Successfully deleted the product {}", id);
+    }
+
+    private ProductDocument getProductById (String id) {
+        Optional<ProductDocument> productDocument = productRepository.findById(id);
+
+        if (productDocument.isEmpty()) {
+            throw new BadRequestException(ExceptionCode.ID_DOESNT_EXIST);
+        }
+
+        return productDocument.get();
     }
 
 }
