@@ -1,5 +1,6 @@
 package com.cube.product.dtos.response;
 
+import com.cube.product.dtos.internal.ProductPrice;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,5 +20,5 @@ public class ProductResponse {
 
     private String description;
 
-    private Double price;
+    private ProductPrice price;
 }

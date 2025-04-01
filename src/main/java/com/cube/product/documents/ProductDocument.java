@@ -1,5 +1,6 @@
 package com.cube.product.documents;
 
+import com.cube.product.dtos.internal.ProductPrice;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,6 +28,6 @@ public class ProductDocument {
     @Indexed
     private String categoryId;
 
-    private Double price;
+    private ProductPrice price;
 
 }
