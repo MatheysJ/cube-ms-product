@@ -27,6 +27,9 @@ public class ProductRequest {
     @NotBlank
     private String categoryId;
 
+    @NotBlank
+    private String image;
+
     @Valid
     @NotNull
     private ProductPrice price;

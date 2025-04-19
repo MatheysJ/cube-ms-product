@@ -90,6 +90,12 @@
 			<artifactId>mapstruct-processor</artifactId>
 			<version>1.6.3</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.algolia</groupId>
+			<artifactId>algoliasearch</artifactId>
+			<version>4.5.4</version>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -1,5 +1,6 @@
 package com.cube.product.controllers;
 
+import com.cube.product.clients.AlgoliaClient;
 import com.cube.product.dtos.request.EditProductRequest;
 import com.cube.product.dtos.request.ProductRequest;
 import com.cube.product.dtos.response.ProductResponse;
@@ -28,6 +29,8 @@ public class ProductController {
 
     private final ProductService productService;
 
+    private final AlgoliaClient algoliaClient;
+
     @GetMapping()
     public ResponseEntity<List<ProductResponse>> getAllProducts() {
         log.info("Getting all products");
@@ -41,6 +44,9 @@ public class ProductController {
     public ResponseEntity<ProductResponse> createProduct(@RequestBody @Valid ProductRequest productRequest) {
         log.info("Creating a product");
         ProductResponse product = productService.createProduct(productRequest);
+
+        log.info("Adding new product to Algolia index");
+        algoliaClient.saveObjects(List.of(product));
 
         log.info("Successfully created a product");
         return ResponseEntity.status(HttpStatus.CREATED).body(product);

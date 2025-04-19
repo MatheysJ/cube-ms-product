@@ -18,6 +18,8 @@ public class ProductResponse {
 
     private String summary;
 
+    private String image;
+
     private String description;
 
     private ProductPrice price;

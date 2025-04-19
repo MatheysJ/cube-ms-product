@@ -8,3 +8,7 @@ spring:
       database: product_db
       user: "${MONGO_USER:root}"
       password: "${MONGO_PASSWORD:pass}"
+
+algolia:
+  applicationId: "${ALGOLIA_APP_ID}"
+  apiKey: "${ALGOLIA_API_KEY}"

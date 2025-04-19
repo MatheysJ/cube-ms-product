@@ -21,6 +21,8 @@ public class ProductDocument {
 
     private String name;
 
+    private String image;
+
     private String summary;
 
     private String description;

@@ -20,6 +20,8 @@ public class EditProductRequest {
 
     private String categoryId;
 
+    private String image;
+
     private ProductPrice price;
 
 }
