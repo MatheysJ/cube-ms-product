@@ -22,7 +22,6 @@ public class AlgoliaClientImpl implements AlgoliaClient {
             log.info("Started to add products to Algolia index");
             searchClient.saveObjects("products_index", products);
 
-            searchClient.close();
             log.info("Successfully added products to Algolia index");
         } catch (Exception exception) {
             log.error("Error adding products to Algolia index", exception);
@@ -33,4 +32,5 @@ public class AlgoliaClientImpl implements AlgoliaClient {
     public void updateRecord(List<ProductDocument> products) {
 
     }
+
 }
