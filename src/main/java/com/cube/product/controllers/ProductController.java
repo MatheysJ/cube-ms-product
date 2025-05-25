@@ -1,6 +1,5 @@
 package com.cube.product.controllers;
 
-import com.cube.product.clients.AlgoliaClient;
 import com.cube.product.dtos.request.EditProductRequest;
 import com.cube.product.dtos.request.ProductRequest;
 import com.cube.product.dtos.response.ProductResponse;

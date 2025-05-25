@@ -1,14 +1,13 @@
 package com.cube.product.clients;
 
-import com.cube.product.documents.ProductDocument;
-import com.cube.product.dtos.response.ProductResponse;
+import com.cube.product.dtos.internal.ProductAlgolia;
 
 import java.util.List;
 
 public interface AlgoliaClient {
 
-    void saveObjects(List<ProductResponse> products);
+    void saveProduct(ProductAlgolia products);
 
-    void updateRecord(List<ProductDocument> products);
+    void deleteProduct(String id);
 
 }

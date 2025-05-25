@@ -1,8 +1,7 @@
 package com.cube.product.clients;
 
 import com.algolia.api.SearchClient;
-import com.cube.product.documents.ProductDocument;
-import com.cube.product.dtos.response.ProductResponse;
+import com.cube.product.dtos.internal.ProductAlgolia;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,20 +16,27 @@ public class AlgoliaClientImpl implements AlgoliaClient {
     private SearchClient searchClient;
 
     @Override
-    public void saveObjects(List<ProductResponse> products) {
+    public void saveProduct(ProductAlgolia products) {
         try {
-            log.info("Started to add products to Algolia index");
-            searchClient.saveObjects("products_index", products);
+            log.info("Started to add product to Algolia index");
+            searchClient.saveObject("products_index", products);
 
-            log.info("Successfully added products to Algolia index");
+            log.info("Successfully added product to Algolia index");
         } catch (Exception exception) {
             log.error("Error adding products to Algolia index", exception);
         }
     }
 
     @Override
-    public void updateRecord(List<ProductDocument> products) {
+    public void deleteProduct(String id) {
+        try {
+            log.info("Started to delete product from Algolia index");
+            searchClient.deleteObject("products_index", id);
 
+            log.info("Successfully deleted product from Algolia index");
+        } catch (Exception exception) {
+            log.error("Error deleting product from Algolia index", exception);
+        }
     }
 
 }
