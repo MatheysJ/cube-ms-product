@@ -1,6 +1,6 @@
 spring:
   application:
-    name: product
+    name: cube-ms-product
   data:
     mongodb:
       host: localhost
@@ -8,3 +8,12 @@ spring:
       database: product_db
       user: "${MONGO_USER:root}"
       password: "${MONGO_PASSWORD:pass}"
+
+algolia:
+  applicationId: "${ALGOLIA_APP_ID}"
+  apiKey: "${ALGOLIA_API_KEY}"
+
+server:
+  port: 8081
+  error:
+    include-message: always

@@ -1,5 +1,6 @@
 package com.cube.product.dtos.request;
 
+import com.cube.product.dtos.internal.ProductPrice;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,6 +20,8 @@ public class EditProductRequest {
 
     private String categoryId;
 
-    private Double price;
+    private String image;
+
+    private ProductPrice price;
 
 }

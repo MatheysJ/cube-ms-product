@@ -1,6 +1,5 @@
-package com.cube.product.dtos.response;
+package com.cube.product.dtos.internal;
 
-import com.cube.product.dtos.internal.ProductPrice;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductResponse {
+public class ProductAlgolia {
+
+    private String objectID;
 
     private String id;
 
@@ -23,4 +24,5 @@ public class ProductResponse {
     private String description;
 
     private ProductPrice price;
+
 }

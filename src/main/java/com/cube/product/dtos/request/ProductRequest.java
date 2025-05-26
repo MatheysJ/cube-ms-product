@@ -1,6 +1,9 @@
 package com.cube.product.dtos.request;
 
+import com.cube.product.dtos.internal.ProductPrice;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,5 +27,10 @@ public class ProductRequest {
     @NotBlank
     private String categoryId;
 
-    private Double price;
+    @NotBlank
+    private String image;
+
+    @Valid
+    @NotNull
+    private ProductPrice price;
 }
