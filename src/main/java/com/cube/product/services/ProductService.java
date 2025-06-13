@@ -6,6 +6,7 @@ import com.cube.product.dtos.internal.ExceptionCode;
 import com.cube.product.dtos.internal.ProductAlgolia;
 import com.cube.product.dtos.request.EditProductRequest;
 import com.cube.product.dtos.request.ProductRequest;
+import com.cube.product.dtos.request.ProductsListBody;
 import com.cube.product.dtos.response.ProductResponse;
 import com.cube.product.exceptions.BadRequestException;
 import com.cube.product.mappers.ProductMapper;
@@ -77,6 +78,16 @@ public class ProductService {
         algoliaClient.deleteProduct(id);
 
         log.info("Successfully deleted the product with id {}", id);
+    }
+
+    public List<ProductResponse> getProductsByIds (List<ProductsListBody> body) {
+        log.info("Started getting list of products by ids");
+
+        List<String> ids = body.stream().map((item) -> item.getId()).toList();
+        List<ProductDocument> productDocuments = productRepository.findByIdIn(ids);
+
+        log.info("Successfully edited the product with id");
+        return productDocuments.stream().map(productMapper::documentToResponse).collect(Collectors.toList());
     }
 
     private ProductDocument getProductById (String id) {

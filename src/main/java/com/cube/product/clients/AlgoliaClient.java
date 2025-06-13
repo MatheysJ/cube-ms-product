@@ -2,7 +2,6 @@ package com.cube.product.clients;
 
 import com.cube.product.dtos.internal.ProductAlgolia;
 
-import java.util.List;
 
 public interface AlgoliaClient {
 
