@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ProductPrice {
 
-    @NotNull
     private Double sale;
 
     @NotNull

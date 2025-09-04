@@ -2,6 +2,7 @@ package com.cube.product.controllers;
 
 import com.cube.product.dtos.request.EditProductRequest;
 import com.cube.product.dtos.request.ProductRequest;
+import com.cube.product.dtos.request.ProductsListBody;
 import com.cube.product.dtos.response.ProductResponse;
 import com.cube.product.services.ProductService;
 import jakarta.validation.Valid;
@@ -34,6 +35,15 @@ public class ProductController {
         List<ProductResponse> products = productService.getAllProducts();
 
         log.info("Successfully got all products");
+        return ResponseEntity.status(HttpStatus.OK).body(products);
+    }
+
+    @PostMapping("/list")
+    public ResponseEntity<List<ProductResponse>> getProductsByIds(@RequestBody @Valid List<ProductsListBody> body) {
+        log.info("Getting products by ids");
+        List<ProductResponse> products = productService.getProductsByIds(body);
+
+        log.info("Successfully got products by ids");
         return ResponseEntity.status(HttpStatus.OK).body(products);
     }
 

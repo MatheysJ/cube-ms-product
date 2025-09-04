@@ -12,4 +12,5 @@ public interface ProductRepository extends MongoRepository<ProductDocument, Stri
 
     ProductDocument save(ProductRequest productRequest);
 
+    List<ProductDocument> findByIdIn(List<String> ids);
 }
